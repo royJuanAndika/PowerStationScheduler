@@ -1,0 +1,110 @@
+.bg-ouryellow {
+    background-color: #FFCC01;
+}
+
+
+.bg-blue {
+    background-color: #0A2B42;
+}
+
+.montserratThin {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+}
+.montserratRegular {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.montserratBold {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.montserratSemiBold {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.scrollable-text {
+    overflow-y: auto;
+    /* Enables vertical scrollbar if content overflows */
+    height: 150px;
+    /* Fixed height */
+}
+
+.montserratExtraBold {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight:900;
+    font-style: normal;
+}
+
+a {
+    color:inherit;
+    text-decoration: none;
+}
+
+.quicksandBold {
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.quicksandThin{
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.quicksandRegular{
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin: 0 0 100px;
+    /* Bottom margin = footer height */
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    background-color: rgb(101, 145, 175);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    overflow: hidden;
+}
+
+table {
+    counter-reset: section;
+}
+
+.count::before {
+    counter-increment: section;
+    content: counter(section);
+}
+
+.py-error{
+    display: none;
+}
