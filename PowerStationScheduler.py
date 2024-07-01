@@ -309,13 +309,13 @@ def findTwoLargestIndex(arr):
 
 
 # Mutation
-def mutate(chromosome, mutation_rate):
+
+def mutate(chromosome, mutation_rate, listrik_instance):
     if random.random() < mutation_rate:
         for _ in range(1):
             tempChromosome = [list(period) for period in chromosome]
             list_1d = list(chain.from_iterable(tempChromosome))
-            element_counts = Counter({i: 0 for i in range(0, 8)})
-            # print(element_counts)
+            element_counts = Counter({i: 0 for i in range(0, len(listrik_instance.getTabelPembangkitListrik())-1)})
 
             element_counts.update(list_1d)
             # element_counts = Counter(list_1d)
@@ -400,7 +400,7 @@ def generatePopulation(population_size, listrik_instance): #INCOMPLETE. DON'T US
 
 
 # Child Chromosome
-def fillChild(population, currentPopulation, fitnessScorePopulation, mutationRate):
+def fillChild(population, currentPopulation, fitnessScorePopulation, mutationRate, listrik_instance):
     # /2 karena sekali crossover bikin 2 anak
     # operasi // itu pembagian, hanya saja resultnya nanti integer.
 
@@ -420,8 +420,8 @@ def fillChild(population, currentPopulation, fitnessScorePopulation, mutationRat
         # print("hasilCrossover1 before mutate = ", hasilCrossover1)
         # print("hasilCrossover2 before mutate = ", hasilCrossover2)
 
-        hasilCrossover1 = mutate(hasilCrossover1, mutationRate)
-        hasilCrossover2 = mutate(hasilCrossover2, mutationRate)
+        hasilCrossover1 = mutate(hasilCrossover1, mutationRate, listrik_instance)
+        hasilCrossover2 = mutate(hasilCrossover2, mutationRate, listrik_instance)
         # print("hasilCrossover1 after mutate : ", hasilCrossover1)
         # print("hasilCrossover2 after mutate: ", hasilCrossover2)
 
