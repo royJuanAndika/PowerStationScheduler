@@ -512,14 +512,17 @@ def showTable(df):
     shownTable = document.querySelector("#shownTable")
     shownTable.style.display = "inline"
     
+    tableTitle.innerHTML = ""
     tableTitle = document.querySelector("#tableTitle")
     for i in range(df.shape[1]):
         if i == 0:
             tableTitle.innerHTML += "<th> </th>"
         tableTitle.innerHTML += "<th scope=\"col\">" + str(i+1) + " </th>"
         
+    
     tableTBody = document.querySelector("#tableTBody")
-
+    tableTBody.innerHTML = ""
+    
     index = 0
     for i in range(df.shape[0]):
         tableTBody.innerHTML += "<tr id=\"tr" + str(index) + "\">"

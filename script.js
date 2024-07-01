@@ -21,3 +21,13 @@ function deleteLastRow() {
         table.deleteRow(table.rows.length - 1);
     }
 }
+
+var valueMethod = ""
+
+
+function accessValue() {
+    let checkedValue = document.querySelector('input[name="flexRadioDefault"]:checked').value;
+    valueMethod = checkedValue;
+}
+
+// Log the value to the console
