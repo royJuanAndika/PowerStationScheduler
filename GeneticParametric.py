@@ -76,35 +76,6 @@ class Listrik:
 #     [15, 2],
 #     [10, 1],
 # ]
-tablePembangkitListrik = [
-    [10, 0],
-    [20, 2],
-    [15, 2],
-    [35, 1],
-    [40, 1],
-    [1, 1],
-    [1, 2],
-    [1, 1],
-]
-test1 = Listrik(tablePembangkitListrik, 6, 110, 150, 2, 1) #UTAMA
-
-
-tablePembangkitListrik2 = [
-    [10, 1],
-    [20, 2],
-    [15, 3],
-    [35, 1],
-    [40, 1],
-    [15, 1],
-    [15, 2],
-    [10, 1],
-    # [30, 2],
-    # [25, 4],
-]
-test2 = Listrik(tablePembangkitListrik2, 6, 110, 150, 2, 2) #EXPERIMENTAL
-
-#loadFile punya William
-
 
 
 
@@ -200,9 +171,6 @@ def generateChromosome(listrik_instance):
     # Transpose the list of lists
     transposed_arr = [[arr[j][i] for j in range(listrik_instance.getMaxMT())] for i in range(listrik_instance.getPeriode())]
     return transposed_arr
-
-array = [[0 for j in range(test2.getPeriode())] for i in range(test2.getMaxMT())]
-array = generateChromosome(test2)
 
 
 # Elite Chromosome
@@ -588,6 +556,43 @@ def plot(bestChromosomeFitnessHistory):
     plt.title("Graph based on a list")
 
     plt.show()
+
+
+tablePembangkitListrik = [
+    [10, 0],
+    [20, 2],
+    [15, 2],
+    [35, 1],
+    [40, 1],
+    [1, 1],
+    [1, 2],
+    [1, 1],
+]
+test1 = Listrik(tablePembangkitListrik, 6, 110, 150, 2, 1) #UTAMA
+
+
+tablePembangkitListrik2 = [
+    [10, 1],
+    [20, 2],
+    [15, 3],
+    [35, 1],
+    [40, 1],
+    [15, 1],
+    [15, 2],
+    [10, 1],
+    # [30, 2],
+    # [25, 4],
+]
+test2 = Listrik(tablePembangkitListrik2, 6, 110, 150, 2, 2) #EXPERIMENTAL
+
+
+array = [[0 for j in range(test2.getPeriode())] for i in range(test2.getMaxMT())]
+array = generateChromosome(test2)
+
+#loadFile punya William
+
+
+
 
 
 runCount = 0

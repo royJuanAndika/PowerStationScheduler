@@ -12,8 +12,8 @@ from pyscript import display
 def accessWebTable():
     webTable = []
     webTable.append([0,0])
-    periode = document.querySelector("#formPeriode").value
-    minListrik = document.querySelector("#formMinListrik").value
+    periode = int(document.querySelector("#formPeriode").value)
+    minListrik = int(document.querySelector("#formMinListrik").value)
     table = document.querySelector("#myTable")
     for i in range(0, table.rows.length):
         # skip the header
@@ -32,7 +32,9 @@ def accessWebTable():
     return webTable, periode, minListrik
 def greet(event):
     # accessWebTable()
-    run(accessWebTable())  
+    tablePembangkitListrik, periode, minListrik = accessWebTable()
+    print(tablePembangkitListrik)
+    run(tablePembangkitListrik, periode, minListrik)  
 # --------------------------------------------------------------------------------------------------------------------------------
 
 
