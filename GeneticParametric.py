@@ -52,15 +52,25 @@ class Listrik:
         self.initListrik = initListrik
 
 
+# tablePembangkitListrik = [
+#     [0, 0],
+#     [20, 2],
+#     [15, 2],
+#     [35, 1],
+#     [40, 1],
+#     [15, 1],
+#     [15, 2],
+#     [10, 1],
+# ]
 tablePembangkitListrik = [
     [0, 0],
     [20, 2],
     [15, 2],
     [35, 1],
     [40, 1],
-    [15, 1],
-    [15, 2],
-    [10, 1],
+    [1, 1],
+    [1, 2],
+    [1, 1],
 ]
 test1 = Listrik(tablePembangkitListrik, 6, 110, 150)
 
@@ -287,8 +297,11 @@ def mutate(chromosome, mutation_rate):
     if random.random() < mutation_rate:
         for _ in range(1):
             tempChromosome = [list(period) for period in chromosome]
+            print("tempChromosome = ", tempChromosome)
             list_1d = list(chain.from_iterable(tempChromosome))
+            print("list_1d = ", list_1d)
             element_counts = Counter({i: 0 for i in range(0, 8)})
+            print("element_counts = ", element_counts)
             # print(element_counts)
 
             element_counts.update(list_1d)

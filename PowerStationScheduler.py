@@ -6,11 +6,14 @@ from collections import Counter
 from itertools import chain
 import pandas as pd
 from pyscript import document
+from pyscript import display
 # import pyarrow
 # -------------------------------------------------Needed for Web----------------------------------------------------------------
 def accessWebTable():
     webTable = []
     webTable.append([0,0])
+    periode = document.querySelector("#formPeriode").value
+    minListrik = document.querySelector("#formMinListrik").value
     table = document.querySelector("#myTable")
     for i in range(0, table.rows.length):
         # skip the header
@@ -26,7 +29,7 @@ def accessWebTable():
             row.append(value)
             # table.rows[i].cells[j].innerHTML = "Hello"
         webTable.append(row)
-    return webTable
+    return webTable, periode, minListrik
 def greet(event):
     # accessWebTable()
     run(accessWebTable())  
@@ -503,11 +506,56 @@ def plot(bestChromosomeFitnessHistory):
 
     plt.show()
     
+def showTable(df):
+    shownTable = document.querySelector("#shownTable")
+    shownTable.style.display = "inline"
+    
+    tableTitle = document.querySelector("#tableTitle")
+    for i in range(df.shape[1]):
+        if i == 0:
+            tableTitle.innerHTML += "<th> </th>"
+        tableTitle.innerHTML += "<th scope=\"col\">" + str(i+1) + " </th>"
+        
+    tableTBody = document.querySelector("#tableTBody")
+
+    index = 0
+    for i in range(df.shape[0]):
+        tableTBody.innerHTML += "<tr id=\"tr" + str(index) + "\">"
+        
+        
+        tableTrI = document.querySelector("#tr" + str(index))
+        tableTrI.innerHTML += "<th scope=\"row\">" + str(df.index[i]) + "</th>"
+        index += 1
+        for j in range(df.shape[1]):
+            tableTrI.innerHTML += "<td>" + str(df.iloc[i, j]) + "</td>"
+            
+    # Make sure to call the function with your actual DataFrame
+    # showTable(your_dataframe_here)
+
+# Example usage:
+# showTable(your_dataframe_here)
+
+    
+            
+            
+            # <th scope="row">1</th>
+            #         <td>Mark</td>
+            #         <td>Otto</td>
+            #         <td>@mdo</td>
+    
+    
+    
+    
+    
+    
+    
 tablePembangkitListrik = []
-def run(tablePembangkitListrikk):
+def run(tablePembangkitListrikk, periode = 6, minListrik = 110):
+    print(periode)
+    print(minListrik)
     tablePembangkitListrik = tablePembangkitListrikk
     print(type(tablePembangkitListrik))
-    test1 = Listrik(tablePembangkitListrik, 6, 110)
+    test1 = Listrik(tablePembangkitListrik, periode, minListrik)
     runCount = 0
     bestHistory = []
     print(tablePembangkitListrik)
@@ -519,14 +567,18 @@ def run(tablePembangkitListrikk):
         print(schedule)
         runCount += 1
         bestHistory.append(fitness)
-        if fitness == 100:
+        if fitness >= 90:
             output = schedule + schedule  # type: ignore
             print("\n Maintenance Schedule: \n")
             row_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
             df = pd.DataFrame(
                 output, columns=["Generator 1 ", "Generator 2 "], index=row_names
             ).T
+            
+            # for i in range()
+            # print(df.iloc[1, 2])
             print(df)
+            showTable(df)
             print("\n The Fitness: ", fitness)
             print("\n Run Count: ", runCount)
             print("\n Best History: ", bestHistory)
