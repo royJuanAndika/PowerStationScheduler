@@ -45,13 +45,14 @@
     </div>
 
 
-    
-    <div class="container-fluid p-5 pt-0 pb-0 d-flex justify-content-center">
-        <div class="mb-3 border border-dark" style="">
-            <label for="formFile" class="form-label">Input your file</label>
-            <input class="form-control border border-dark" type="file" id="formFile">
-        </div>
+    <div class="container-fluid d-flex justify-content-center align-items-center quicksandBold mt-5 px-5 mb-5">
+        <form action="upload.php" method="post" enctype="multipart/form-data">
+            Select image to upload:
+            <input type="file" name="fileToUpload" id="fileToUpload">
+            <input type="submit" value="Upload Image" name="submit">
+        </form>
     </div>
+
 
     <div class="container-fluid d-flex justify-content-center align-items-center quicksandBold mb-5">
         <button type="button" class="btn btn-outline-primary" style="width: 10%; font-size: 30px;" onclick="addNewRow()">+</button>

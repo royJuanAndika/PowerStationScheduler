@@ -8,9 +8,21 @@ import pandas as pd
 from pyscript import document
 from pyscript import display
 from pyscript import window
+import os
 
 # -----------------------------------------------------File Reading----------------------------------------------
+name = "/home/pyodide/GeneticParametric.py"
+def setName():
+    fileToUpload = document.querySelector("#fileToUpload")
+    # name = "/uploads/"+ fileToUpload.files[0].name
+    name = "C:/xampp/htdocs/PowerStationScheduler/uploads/" + "input.txt"
+    
+
 def load_parameters_from_file(filename):
+    print(os.getcwd())
+    print(os.listdir(os.getcwd()))
+    print(os.listdir(os.getcwd()))
+    print(os.listdir(os.getcwd() + "/pyscript"))
     with open(filename, 'r') as file:
         lines = file.readlines()
         
@@ -24,39 +36,16 @@ def load_parameters_from_file(filename):
         return tabel_pembangkit_listrik, periode, min_listrik, init_listrik, max_mt
 
 # Example usage
-file_path = 'input.txt'  # Replace with the actual file path
 
-# Load parameters from the file
-tablePembangkitListrik, periode, min_listrik, init_listrik, max_mt = load_parameters_from_file(file_path)
 
-# Initialize the Listrik class instance with the loaded parameters
-test_from_file = Listrik(tablePembangkitListrik, periode, min_listrik, init_listrik, max_mt)
+
 # ---------------------------------------------------------------------------------------------------------------
 
 
 
 
-# -----------------------------------------------------Needed for Web----------------------------------------------
-def accessWebTable():
-    webTable = []
-    webTable.append([0,0])
-    table = document.querySelector("#myTable")
-    for i in range(0, table.rows.length):
-        # skip the header
-        if i == 0:
-            continue
-        
-        row = []
-        for j in range(1, table.rows[i].cells.length):
-            input_element = table.rows[i].cells[j].querySelector("input")
-            value = int(input_element.value)
-            
-            # value = input.value
-            row.append(value)
-            # table.rows[i].cells[j].innerHTML = "Hello"
-        webTable.append(row)
-        
-        
+# -----------------------------------------------------Needed for File----------------------------------------------
+def accessFileTable():
     method = window.valueMethod
     tempMethod = 1
     if method == "elitism":
@@ -64,22 +53,25 @@ def accessWebTable():
     if method == "tournament":
         tempMethod = 2
     
-    
-    formMinListrik = document.querySelector("#formMinListrik")
-    formPeriode = document.querySelector("#formPeriode")
-    formEngineerTeamsCount = document.querySelector("#formEngineerTeamsCount")
-    
-    minListrik = int(formMinListrik.value)
-    periode = int(formPeriode.value)
-    engineerTeamsCount = int(formEngineerTeamsCount.value)
+    setName()
+    file_path = name
+    # Load parameters from the file
+    tablePembangkitListrikFile, periodeFile, min_listrikFile, init_listrikFile, max_mtFile = load_parameters_from_file(file_path)
+
+    # Initialize the Listrik class instance with the loaded parameters
+    test_from_file = Listrik(tablePembangkitListrik, periode, min_listrik, init_listrik, max_mt)
+
+    minListrik = min_listrik
+    periode = periodeFile
+    engineerTeamsCount = max_mtFile
     # print(tempMethod)
     
-    return webTable, periode, minListrik, engineerTeamsCount, tempMethod
+    return tablePembangkitListrikFile, periode, minListrik, engineerTeamsCount, tempMethod
 
 
 def greet(event):
     # accessWebTable()
-    tablePembangkitListrik, periode, minListrik, maxMT, selectionMethod = accessWebTable()
+    tablePembangkitListrik, periode, minListrik, maxMT, selectionMethod = accessFileTable()
     # print(tablePembangkitListrik)
     
     listrikWeb = Listrik(tablePembangkitListrik, periode, minListrik, maxMT, selectionMethod)

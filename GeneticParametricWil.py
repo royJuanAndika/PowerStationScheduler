@@ -75,6 +75,7 @@ def load_parameters_from_file(filename):
     with open(filename, 'r') as file:
         lines = file.readlines()
         
+        
         # Parse each line into the corresponding parameter
         tabel_pembangkit_listrik = [list(map(int, item.split(','))) for item in lines[0].strip().split(';')]
         periode = int(lines[1].strip())
